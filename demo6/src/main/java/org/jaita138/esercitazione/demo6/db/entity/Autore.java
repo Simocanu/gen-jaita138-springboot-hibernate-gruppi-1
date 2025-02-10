@@ -1,10 +1,13 @@
 package org.jaita138.esercitazione.demo6.db.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Autore {
@@ -21,6 +24,9 @@ public class Autore {
 
     @Column(length = 64)
     private String nazionalita;
+
+    @OneToMany(mappedBy = "autore")
+    private List<Libro> libri;
 
     public Long getId() {
         return id;
@@ -54,6 +60,14 @@ public class Autore {
         this.nazionalita = nazionalita;
     }
 
+    public List<Libro> getLibri() {
+        return libri;
+    }
+
+    public void setLibri(List<Libro> libri) {
+        this.libri = libri;
+    }
+
     @Override
     public String toString() {
         return "Autore [\n"
@@ -63,5 +77,7 @@ public class Autore {
                 + "  nazionalita=" + nazionalita + "\n"
                 + "]";
     }
+
+    
 
 }

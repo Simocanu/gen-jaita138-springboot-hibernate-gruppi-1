@@ -1,10 +1,14 @@
 package org.jaita138.esercitazione.demo6.db.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Libro {
@@ -20,6 +24,12 @@ public class Libro {
     private String isbn;
 
     private int annoPubblicazione;
+
+    @ManyToOne
+    private Autore autore;
+
+    @ManyToMany
+    private List<Genere> generi;
 
     public Long getId() {
         return id;
@@ -53,7 +63,24 @@ public class Libro {
         this.annoPubblicazione = annoPubblicazione;
     }
 
-   
+    public Autore getAutore() {
+        return autore;
+    }
+
+    public void setAutore(Autore autore) {
+        this.autore = autore;
+    }
+    
+    public List<Genere> getGeneri() {
+        return generi;
+    }
+
+    public void setGeneri(List<Genere> generi) {
+        this.generi = generi;
+    }
+
+    
+
     @Override
     public String toString() {
         return "Libro [\n"
@@ -61,9 +88,11 @@ public class Libro {
                 + "  titolo=" + titolo + ",\n"
                 + "  isbn=" + isbn + ",\n"
                 + "  anno pubblicazione=" + annoPubblicazione + "\n"
+                + "  autore=" + autore + "\n"
                 + "]";
     }
 
+    
 
 
 

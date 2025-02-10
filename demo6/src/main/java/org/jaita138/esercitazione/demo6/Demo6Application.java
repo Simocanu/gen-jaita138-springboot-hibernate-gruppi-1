@@ -1,6 +1,9 @@
 package org.jaita138.esercitazione.demo6;
 
+import org.jaita138.esercitazione.demo6.cli.CliManager;
 import org.jaita138.esercitazione.demo6.service.AutoreService;
+import org.jaita138.esercitazione.demo6.service.GenereService;
+import org.jaita138.esercitazione.demo6.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
