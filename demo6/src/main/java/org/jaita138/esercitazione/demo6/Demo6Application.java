@@ -28,7 +28,7 @@ public class Demo6Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		new CliManager(autoreService, genereService, libroService);
+		new CliManager(autoreService, libroService, genereService);
 	}
 
 }
