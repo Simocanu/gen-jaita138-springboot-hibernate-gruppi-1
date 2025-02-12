@@ -62,6 +62,7 @@ public class CliManager {
                 break;
             case 5:
                 stampaGeneri();
+                break;
         }
 
         stampaOpzioni();
