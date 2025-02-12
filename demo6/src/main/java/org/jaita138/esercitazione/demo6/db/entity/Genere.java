@@ -29,6 +29,10 @@ public class Genere {
         this.id = id;
     }
 
+    public List<Libro> getLibri() {
+        return libri;
+    }
+
     public String getNome() {
         return nome;
     }

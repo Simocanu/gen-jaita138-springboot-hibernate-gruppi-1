@@ -13,6 +13,8 @@ public interface LibroRepo extends JpaRepository<Libro, Long> {
     List<Libro>findByAnnoPubblicazioneBetween(Integer min, Integer max);
     
     List<Libro>findByIsbnIgnoreCase(String Isbn);
+
+
     
 
 }

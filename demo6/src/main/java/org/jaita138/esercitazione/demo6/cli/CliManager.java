@@ -50,6 +50,9 @@ public class CliManager {
         System.out.println("9. Trova libri con titolo che inizia con 'p'");
         System.out.println("10. Trova libri con anno di pubblicazione tra 2000 e 2020");
         System.out.println("11. Trova libro con isbn 9783161484100");
+        System.out.println("12. Trova tutti gli autori dei libri");
+        System.out.println("13. Trova tutti i generi dei libri");
+        System.out.println("14. Esci");
         String strUserValue = scanner.nextLine();
         int userValue = Integer.parseInt(strUserValue);
 
@@ -87,6 +90,14 @@ public class CliManager {
             case 11:
                 libroConIsbn9783161484100();
                 break;
+            case 12:
+                trovaAutoriLibri();
+                break;
+            case 13:
+                trovaGeneriLibri();
+                break;
+            case 14:
+                return;
             default:
                 System.out.println("Scelta non valida!");
             
@@ -271,5 +282,19 @@ public class CliManager {
 
         System.out.println("Libro aggiunto con successo!");
         separatore();
+    }
+
+    private void trovaAutoriLibri() {
+        for (Autore autore : autoreService.findAllWithLibro()) {
+            System.out.println(autore);
+            System.out.println(autore.getLibri());
+        }
+    }
+
+    private void trovaGeneriLibri() {
+        for (Genere genere : genereService.findAllWithLibro()) {
+            System.out.println(genere);
+            System.out.println(genere.getLibri());
+        }
     }
 }
