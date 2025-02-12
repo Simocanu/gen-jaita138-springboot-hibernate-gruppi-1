@@ -3,7 +3,6 @@ package org.jaita138.esercitazione.demo6.service;
 import java.util.List;
 
 import org.hibernate.Hibernate;
-import org.jaita138.esercitazione.demo6.db.entity.Autore;
 import org.jaita138.esercitazione.demo6.db.entity.Genere;
 import org.jaita138.esercitazione.demo6.db.repo.GenereRepo;
 import org.springframework.beans.factory.annotation.Autowired;
