@@ -51,4 +51,14 @@ public class LibroService {
         return libri;
     }
 
+    public List<Libro> findByTitoloStartingWith() {
+        return libroRepo.findByTitoloStartingWithIgnoreCase("p");
+    }
+
+    public List<Libro> findByAnnoPubblicazioneBetween() {
+        return libroRepo.findByAnnoPubblicazioneBetween(2000, 2020);
+    }
+    public List<Libro> findByIsbnIgnoreCase(String isbn){
+        return libroRepo.findByIsbnIgnoreCase("978-3-16-148410-0");
+    }
 }

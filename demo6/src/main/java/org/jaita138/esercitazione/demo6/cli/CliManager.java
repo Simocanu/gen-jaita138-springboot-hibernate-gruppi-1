@@ -46,6 +46,9 @@ public class CliManager {
         System.out.println("6. Aggiungi un nuovo autore");
         System.out.println("7. Aggiungi un nuovo genere");
         System.out.println("8. Aggiungi un nuovo libro con autore e generi");
+        System.out.println("9. Trova libri con titolo che inizia con 'p'");
+        System.out.println("10. Trova libri con anno di pubblicazione tra 2000 e 2020");
+        System.out.println("11. Trova libro con isbn 9783161484100");
         String strUserValue = scanner.nextLine();
         int userValue = Integer.parseInt(strUserValue);
 
@@ -74,8 +77,18 @@ public class CliManager {
             case 8:
                 // aggiungiLibroConAutoreEGenere();
                 break;
+            case 9:
+                trovaTitoloConP();
+                break;
+            case 10:
+                trovaTra2000E2020();
+                break;
+            case 11:
+                libroConIsbn9783161484100();
+                break;
             default:
                 System.out.println("Scelta non valida!");
+            
 
         }
 
@@ -172,4 +185,29 @@ public class CliManager {
         separatore();
     }
 
+    private void trovaTitoloConP() {
+        List<Libro> libri = libroService.findByTitoloStartingWith();
+        System.out.println("\nLibri con titolo che inizia con 'p': ");
+        for (Libro libro : libri) {
+            System.out.println(libro);
+            System.out.println("");
+        }
+ 
+   }
+   private void trovaTra2000E2020() {
+        List<Libro> libri = libroService.findByAnnoPubblicazioneBetween();
+        System.out.println("\nLibri con anno di pubblicazione tra 2000 e 2020: ");
+        for (Libro libro : libri) {
+            System.out.println(libro);
+            System.out.println("");
+        }
+   }
+   private void libroConIsbn9783161484100() {
+        List<Libro> libri = libroService.findByIsbnIgnoreCase("9783161484100");
+        System.out.println("\nLibri con isbn 9783161484100: ");
+        for (Libro libro : libri) {
+            System.out.println(libro);
+            System.out.println("");
+        }
+   }
 }
