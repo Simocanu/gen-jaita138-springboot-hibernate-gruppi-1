@@ -28,5 +28,4 @@ public class AutoreService {
     public Autore findById(Long id) {
         return autoreRepo.findById(id).orElse(null);
     }
-
 }

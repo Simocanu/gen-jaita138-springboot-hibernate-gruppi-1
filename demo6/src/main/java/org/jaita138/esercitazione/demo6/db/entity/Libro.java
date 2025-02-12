@@ -71,7 +71,7 @@ public class Libro {
     public void setAutore(Autore autore) {
         this.autore = autore;
     }
-    
+
     public List<Genere> getGeneri() {
         return generi;
     }
@@ -79,8 +79,6 @@ public class Libro {
     public void setGeneri(List<Genere> generi) {
         this.generi = generi;
     }
-
-    
 
     @Override
     public String toString() {
@@ -91,14 +89,5 @@ public class Libro {
                 + "  anno pubblicazione=" + annoPubblicazione + "\n"
                 + "]";
     }
-
-    
-
-
-
-
-
-
-
 
 }

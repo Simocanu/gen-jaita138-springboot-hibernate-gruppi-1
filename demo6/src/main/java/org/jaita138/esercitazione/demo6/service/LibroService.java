@@ -24,14 +24,14 @@ public class LibroService {
         libroRepo.delete(libro);
     }
 
-    public List <Libro> findAll() {
+    public List<Libro> findAll() {
         return libroRepo.findAll();
     }
 
     public Libro findById(Long id) {
         return libroRepo.findById(id).orElse(null);
     }
-    
+
     @Transactional
     public List<Libro> findAllAutore() {
         List<Libro> libri = libroRepo.findAll();
@@ -51,5 +51,4 @@ public class LibroService {
         return libri;
     }
 
-    
 }

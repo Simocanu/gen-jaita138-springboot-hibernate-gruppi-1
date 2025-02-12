@@ -43,6 +43,9 @@ public class CliManager {
         System.out.println("3. Visualizza libri con autore e generi");
         System.out.println("4. Visualizza autori");
         System.out.println("5. Visualizza tutti i generi");
+        System.out.println("6. Aggiungi un nuovo autore");
+        System.out.println("7. Aggiungi un nuovo genere");
+        System.out.println("8. Aggiungi un nuovo libro con autore e generi");
         String strUserValue = scanner.nextLine();
         int userValue = Integer.parseInt(strUserValue);
 
@@ -62,7 +65,18 @@ public class CliManager {
                 break;
             case 5:
                 stampaGeneri();
+            case 6:
+                aggiungiAutore();
                 break;
+            case 7:
+                aggiungiGenere();
+                break;
+            case 8:
+                // aggiungiLibroConAutoreEGenere();
+                break;
+            default:
+                System.out.println("Scelta non valida!");
+
         }
 
         stampaOpzioni();
@@ -77,7 +91,7 @@ public class CliManager {
         }
         separatore();
     }
-    
+
     private void stampaLibriConAutore() {
         List<Libro> libri = libroService.findAllAutore();
         System.out.println("\nLibri con autore: ");
@@ -97,7 +111,7 @@ public class CliManager {
             System.out.println(libro.getAutore());
             System.out.println(libro.getGeneri());
             System.out.println("");
-        } 
+        }
     }
 
     private void stampaAutori() {
@@ -119,4 +133,43 @@ public class CliManager {
 
         }
     }
+
+    private void aggiungiAutore() {
+        System.out.println("\nAggiungi un nuovo autore:");
+
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("Cognome: ");
+        String cognome = scanner.nextLine();
+
+        System.out.print("Nazionalità: ");
+        String nazionalita = scanner.nextLine();
+
+        Autore autore = new Autore();
+        autore.setNome(nome);
+        autore.setCognome(cognome);
+        autore.setNazionalita(nazionalita);
+
+        autoreService.save(autore);
+
+        System.out.println("Autore aggiunto con successo!");
+        separatore();
+    }
+
+    private void aggiungiGenere() {
+        System.out.println("\nAggiungi un nuovo genere:");
+
+        System.out.print("Nome del genere: ");
+        String nome = scanner.nextLine();
+
+        Genere genere = new Genere();
+        genere.setNome(nome);
+
+        genereService.save(genere);
+
+        System.out.println("Genere aggiunto con successo!");
+        separatore();
+    }
+
 }
