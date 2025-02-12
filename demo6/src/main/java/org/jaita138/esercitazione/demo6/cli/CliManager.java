@@ -41,7 +41,8 @@ public class CliManager {
         System.out.println("1. Visualizza tutti i libri");
         System.out.println("2. Visualizza libro con autore");
         System.out.println("3. Visualizza libri con autore e generi");
-
+        System.out.println("4. Visualizza autori");
+        System.out.println("5. Visualizza tutti i generi");
         String strUserValue = scanner.nextLine();
         int userValue = Integer.parseInt(strUserValue);
 
@@ -56,16 +57,20 @@ public class CliManager {
             case 3:
                 stampaLibriConAutoreEGenere();
                 break;
-
+            case 4:
+                stampaAutori();
+                break;
+            case 5:
+                stampaGeneri();
         }
 
         stampaOpzioni();
     }
 
     private void stampaLibri() {
-        List<Libro> libri1 = libroService.findAll();
+        List<Libro> libri = libroService.findAll();
         System.out.println("\nLibri: ");
-        for (Libro libro : libri1) {
+        for (Libro libro : libri) {
             System.out.println(libro);
             System.out.println("");
         }
@@ -73,21 +78,44 @@ public class CliManager {
     }
     
     private void stampaLibriConAutore() {
-        List<Libro> libri2 = libroService.findAllWithAutore();
+        List<Libro> libri = libroService.findAllAutore();
         System.out.println("\nLibri con autore: ");
-        for (Libro libro : libri2) {
+        for (Libro libro : libri) {
             System.out.println(libro);
+            System.out.println(libro.getAutore());
             System.out.println("");
         }
         separatore();
     }
 
     private void stampaLibriConAutoreEGenere() {
-        List<Libro> libri3 = libroService.findAllWithAutoreAndGenere();
+        List<Libro> libri = libroService.findAllAutoreAndGenere();
         System.out.println("\nLibri con autore e generi: ");
-        for (Libro libro : libri3) {
+        for (Libro libro : libri) {
             System.out.println(libro);
+            System.out.println(libro.getAutore());
+            System.out.println(libro.getGeneri());
             System.out.println("");
         } 
+    }
+
+    private void stampaAutori() {
+        List<Autore> autori = autoreService.findAll();
+        System.out.println("\nAutori: ");
+        for (Autore autore : autori) {
+            System.out.println(autore);
+            System.out.println("");
+
+        }
+    }
+
+    private void stampaGeneri() {
+        List<Genere> generi = genereService.findAll();
+        System.out.println("\nGeneri: ");
+        for (Genere genere : generi) {
+            System.out.println(genere);
+            System.out.println("");
+
+        }
     }
 }

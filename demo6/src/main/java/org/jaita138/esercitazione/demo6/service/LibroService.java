@@ -2,10 +2,13 @@ package org.jaita138.esercitazione.demo6.service;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.jaita138.esercitazione.demo6.db.entity.Libro;
 import org.jaita138.esercitazione.demo6.db.repo.LibroRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class LibroService {
@@ -29,15 +32,24 @@ public class LibroService {
         return libroRepo.findById(id).orElse(null);
     }
     
-    public List<Libro> findAllWithAutore() {
-        
-        return libroRepo.findAllWithAutore();
+    @Transactional
+    public List<Libro> findAllAutore() {
+        List<Libro> libri = libroRepo.findAll();
+        for (Libro libro : libri) {
+            Hibernate.initialize(libro.getAutore());
+        }
+        return libri;
     }
 
-    public List<Libro> findAllWithAutoreAndGenere() {
-        
-        return libroRepo.findAllWithAutoreAndGenere();
+    @Transactional
+    public List<Libro> findAllAutoreAndGenere() {
+        List<Libro> libri = libroRepo.findAll();
+        for (Libro libro : libri) {
+            Hibernate.initialize(libro.getAutore());
+            Hibernate.initialize(libro.getGeneri());
+        }
+        return libri;
     }
+
     
-
 }
