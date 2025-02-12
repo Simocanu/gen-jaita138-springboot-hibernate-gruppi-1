@@ -1,5 +1,6 @@
 package org.jaita138.esercitazione.demo6.cli;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -75,7 +76,7 @@ public class CliManager {
                 aggiungiGenere();
                 break;
             case 8:
-                // aggiungiLibroConAutoreEGenere();
+                aggiungiLibroConAutoreEGenere();
                 break;
             case 9:
                 trovaTitoloConP();
@@ -210,4 +211,65 @@ public class CliManager {
             System.out.println("");
         }
    }
+
+   private void aggiungiLibroConAutoreEGenere() {
+        System.out.println("\nAggiungi un nuovo libro:");
+
+        System.out.print("Titolo: ");
+        String titolo = scanner.nextLine();
+
+        System.out.print("Anno di pubblicazione: ");
+        int annoPubblicazione = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("ISBN: ");
+        String isbn = scanner.nextLine();
+
+        System.out.println("Scegli un autore dall'elenco:");
+        List<Autore> autori = autoreService.findAll();
+        for (Autore autore : autori) {
+            System.out.println(autore.getId() + ". " + autore.getNome() + " " + autore.getCognome());
+        }
+
+        System.out.print("ID autore: ");
+        Long autoreId = Long.parseLong(scanner.nextLine());
+        Autore autore = autoreService.findById(autoreId);
+
+        if (autore == null) {
+            System.out.println("Autore non trovato! Riprova.");
+            return;
+        }
+
+        System.out.println("Scegli i generi (inserisci gli ID separati da virgola):");
+        List<Genere> generi = genereService.findAll();
+        for (Genere genere : generi) {
+            System.out.println(genere.getId() + ". " + genere.getNome());
+        }
+
+        System.out.print("ID generi (es. 1,3,5): ");
+        String[] generiIds = scanner.nextLine().split(",");
+        List<Genere> generiSelezionati = new ArrayList<>();
+
+        for (String id : generiIds) {
+            Long idGenere = Long.parseLong(id.trim());
+            Genere genere = genereService.findById(idGenere);
+
+            if (genere != null) {
+                generiSelezionati.add(genere);
+            } else {
+                System.out.println("Genere con ID " + idGenere + " non trovato!");
+            }
+        }
+
+        Libro libro = new Libro();
+        libro.setTitolo(titolo);
+        libro.setAnnoPubblicazione(annoPubblicazione);
+        libro.setIsbn(isbn);
+        libro.setAutore(autore);
+        libro.setGeneri(generiSelezionati);
+
+        libroService.save(libro);
+
+        System.out.println("Libro aggiunto con successo!");
+        separatore();
+    }
 }
