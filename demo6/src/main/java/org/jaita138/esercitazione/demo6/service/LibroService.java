@@ -28,9 +28,16 @@ public class LibroService {
     public Libro findById(Long id) {
         return libroRepo.findById(id).orElse(null);
     }
+    
+    public List<Libro> findAllWithAutore() {
+        
+        return libroRepo.findAllWithAutore();
+    }
 
-
-
-
+    public List<Libro> findAllWithAutoreAndGenere() {
+        
+        return libroRepo.findAllWithAutoreAndGenere();
+    }
+    
 
 }

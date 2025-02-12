@@ -39,6 +39,8 @@ public class CliManager {
 
         System.out.println("Operazioni:");
         System.out.println("1. Visualizza tutti i libri");
+        System.out.println("2. Visualizza libro con autore");
+        System.out.println("3. Visualizza libri con autore e generi");
 
         String strUserValue = scanner.nextLine();
         int userValue = Integer.parseInt(strUserValue);
@@ -49,6 +51,11 @@ public class CliManager {
                 stampaLibri();
                 break;
             case 2:
+                stampaLibriConAutore();
+                break;
+            case 3:
+                stampaLibriConAutoreEGenere();
+                break;
 
         }
 
@@ -56,11 +63,31 @@ public class CliManager {
     }
 
     private void stampaLibri() {
-        List<Libro> libri = libroService.findAll();
+        List<Libro> libri1 = libroService.findAll();
         System.out.println("\nLibri: ");
-        System.out.println(libri);
-        System.out.println("");
+        for (Libro libro : libri1) {
+            System.out.println(libro);
+            System.out.println("");
+        }
+        separatore();
+    }
+    
+    private void stampaLibriConAutore() {
+        List<Libro> libri2 = libroService.findAllWithAutore();
+        System.out.println("\nLibri con autore: ");
+        for (Libro libro : libri2) {
+            System.out.println(libro);
+            System.out.println("");
+        }
         separatore();
     }
 
+    private void stampaLibriConAutoreEGenere() {
+        List<Libro> libri3 = libroService.findAllWithAutoreAndGenere();
+        System.out.println("\nLibri con autore e generi: ");
+        for (Libro libro : libri3) {
+            System.out.println(libro);
+            System.out.println("");
+        } 
+    }
 }

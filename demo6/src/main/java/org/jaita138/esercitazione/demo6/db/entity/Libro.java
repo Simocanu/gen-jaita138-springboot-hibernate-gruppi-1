@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
@@ -26,6 +27,7 @@ public class Libro {
     private int annoPubblicazione;
 
     @ManyToOne
+    @JoinColumn(name = "autore_id")
     private Autore autore;
 
     @ManyToMany
@@ -88,7 +90,6 @@ public class Libro {
                 + "  titolo=" + titolo + ",\n"
                 + "  isbn=" + isbn + ",\n"
                 + "  anno pubblicazione=" + annoPubblicazione + "\n"
-                + "  autore=" + autore + "\n"
                 + "]";
     }
 
